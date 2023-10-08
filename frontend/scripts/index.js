@@ -11,6 +11,34 @@ button.addEventListener('click', handleButtonClick);
 let departments = [];
 let hours = [];
 
+//Экземпляр графика
+const myChart = new Chart(grafica, {
+  type: 'line',
+  data: {
+    labels: departments,
+    datasets: [
+      {
+        label: "Общая трудоёмкость (час)",
+        data: hours,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    //aspectRatio: 3,
+    maintainAspectRatio: false,
+    fill: true,
+    pointRadius: 5,
+    scales: {
+      y: {
+        beginAtZero: true // назначили оси Y начинать отсчет с нуля
+      }
+    }
+  }
+})
+
 //Отрисовка графика
 function handleDraw() {
   api.getData()
@@ -22,32 +50,10 @@ function handleDraw() {
       console.log(err);
     })
     .finally(() => {
-      new Chart(grafica, {
-        type: 'line',
-        data: {
-          labels: departments,
-          datasets: [
-            {
-              label: "Общая трудоёмкость (час)",
-              data: hours,
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 2,
-            }
-          ]
-        },
-        options: {
-          //aspectRatio: 3,
-          maintainAspectRatio: false,
-          fill: true,
-          pointRadius: 5,
-          scales: {
-            y: {
-              beginAtZero: true // назначили оси Y начинать отсчет с нуля
-            }
-          }
-        }
-      })
+      myChart.reset();
+      myChart.data.datasets[0].data = hours;
+      myChart.data.labels = departments;
+      myChart.update();
     })
 };
 

@@ -21,6 +21,4 @@ class Controller {
 
 }
 
-//const Controller = new Controller()
-
 module.exports = new Controller()
