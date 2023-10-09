@@ -48,6 +48,9 @@ function handleDraw() {
     })
     .catch((err) => {
       console.log(err);
+      alert("Не удалось получить данные");
+      departments = [];
+      hours = [];
     })
     .finally(() => {
       myChart.reset();
