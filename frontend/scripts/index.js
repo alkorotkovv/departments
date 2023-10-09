@@ -1,6 +1,6 @@
 import api from './api.js';
 
-// Получение ссылки на элемент canvas в DOM
+//Получение ссылки на элемент canvas в DOM
 const grafica = document.getElementById("grafica");
 
 //Элемент кнопки
@@ -37,7 +37,7 @@ const myChart = new Chart(grafica, {
       }
     }
   }
-})
+});
 
 //Отрисовка графика
 function handleDraw() {

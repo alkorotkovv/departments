@@ -9,21 +9,21 @@ class Api {
   //Метод реакция на результат запроса
   _checkResult(res) {
     if (res.ok)
-        return res.json()
-      else
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      return res.json()
+    else
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
   };
 
   //Метод получения данных 
   getData() {
     return fetch(this._baseUrl + '/data', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     .then(res => this._checkResult(res))
-  }  
+  };
 
 }
 
